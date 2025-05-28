@@ -2,56 +2,40 @@
 import React from "react";
 
 const Skills: React.FC = () => {
-  const skillsData = [
-    {
-      category: "Languages",
-      skills: ["JavaScript (ES6+)", "Python", "Java", "C++", "HTML5", "CSS3"]
-    },
-    {
-      category: "Frameworks & Libraries", 
-      skills: ["React.js", "Node.js", "Express.js", "Tailwind CSS", "Bootstrap", "Spring Boot"]
-    },
-    {
-      category: "Tools & Platforms",
-      skills: ["Git & GitHub", "Docker", "VS Code", "Firebase", "AWS (Basics)", "Jira"]
-    },
-    {
-      category: "Databases",
-      skills: ["MongoDB", "PostgreSQL", "MySQL", "SQLite"]
-    },
-    {
-      category: "Concepts & Methodologies",
-      skills: ["Agile/Scrum", "REST APIs", "OOP", "Data Structures", "Algorithms"]
-    }
+  const skills = [
+    { name: "HTML", level: 90, category: "Frontend" },
+    { name: "CSS", level: 85, category: "Frontend" },
+    { name: "JavaScript", level: 80, category: "Frontend" },
+    { name: "Bootstrap", level: 85, category: "Frontend" },
+    { name: "Python", level: 85, category: "Backend" },
+    { name: "Django", level: 75, category: "Backend" },
+    { name: "Java", level: 70, category: "Programming" },
+    { name: "MySQL", level: 80, category: "Database" },
+    { name: "MongoDB", level: 75, category: "Database" },
+    { name: "Data Science", level: 70, category: "Specialization" },
+    { name: "Machine Learning", level: 65, category: "Specialization" },
+    { name: "Git", level: 75, category: "Tools" },
   ];
+  
+  const categories = Array.from(new Set(skills.map((skill) => skill.category)));
   
   return (
     <section id="skills" className="relative py-24 bg-tech-dark">
       <div className="section-container">
         <h2 className="section-title">My Skills</h2>
         
-        <div className="mt-16 max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {skillsData.map((categoryData, index) => (
-              <div key={categoryData.category} className="tech-card text-left animate-fade-in group hover:shadow-2xl hover:shadow-tech-blue/10 transition-all duration-300">
-                <div className="flex items-center mb-6">
-                  <div className="w-3 h-3 bg-tech-blue rounded-full mr-3"></div>
-                  <h4 className="font-bold text-xl text-white group-hover:text-tech-blue-light transition-colors duration-300">
-                    {categoryData.category}
-                  </h4>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {categoryData.skills.map((skill, skillIndex) => (
-                    <span 
-                      key={skill} 
-                      className="inline-block bg-gradient-to-r from-tech-blue/10 to-tech-purple/10 border border-tech-blue/20 text-tech-blue-light px-4 py-2 rounded-full text-sm font-medium hover:bg-tech-blue/20 hover:scale-105 transition-all duration-300 cursor-default"
-                      style={{
-                        animationDelay: `${index * 100 + skillIndex * 50}ms`
-                      }}
-                    >
-                      {skill}
-                    </span>
-                  ))}
+        <div className="mt-16">
+          <h3 className="section-subtitle mb-8">Skills by Category</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            {categories.map((category) => (
+              <div key={category} className="tech-card text-center animate-fade-in">
+                <h4 className="font-semibold mb-3 text-tech-blue">{category}</h4>
+                <div className="space-y-2">
+                  {skills
+                    .filter((skill) => skill.category === category)
+                    .map((skill) => (
+                      <p key={skill.name} className="text-sm">{skill.name}</p>
+                    ))}
                 </div>
               </div>
             ))}
