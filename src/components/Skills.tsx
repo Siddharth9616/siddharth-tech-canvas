@@ -2,22 +2,28 @@
 import React from "react";
 
 const Skills: React.FC = () => {
-  const skills = [
-    { name: "HTML", level: 90, category: "Frontend" },
-    { name: "CSS", level: 85, category: "Frontend" },
-    { name: "JavaScript", level: 80, category: "Frontend" },
-    { name: "Bootstrap", level: 85, category: "Frontend" },
-    { name: "Python", level: 85, category: "Backend" },
-    { name: "Django", level: 75, category: "Backend" },
-    { name: "Java", level: 70, category: "Programming" },
-    { name: "MySQL", level: 80, category: "Database" },
-    { name: "MongoDB", level: 75, category: "Database" },
-    { name: "Data Science", level: 70, category: "Specialization" },
-    { name: "Machine Learning", level: 65, category: "Specialization" },
-    { name: "Git", level: 75, category: "Tools" },
+  const skillsData = [
+    {
+      category: "Languages",
+      skills: ["JavaScript (ES6+)", "Python", "Java", "C++", "HTML5", "CSS3"]
+    },
+    {
+      category: "Frameworks & Libraries", 
+      skills: ["React.js", "Node.js", "Express.js", "Tailwind CSS", "Bootstrap", "Spring Boot"]
+    },
+    {
+      category: "Tools & Platforms",
+      skills: ["Git & GitHub", "Docker", "VS Code", "Firebase", "AWS (Basics)", "Jira"]
+    },
+    {
+      category: "Databases",
+      skills: ["MongoDB", "PostgreSQL", "MySQL", "SQLite"]
+    },
+    {
+      category: "Concepts & Methodologies",
+      skills: ["Agile/Scrum", "REST APIs", "OOP", "Data Structures", "Algorithms"]
+    }
   ];
-  
-  const categories = Array.from(new Set(skills.map((skill) => skill.category)));
   
   return (
     <section id="skills" className="relative py-24 bg-tech-dark">
@@ -26,16 +32,16 @@ const Skills: React.FC = () => {
         
         <div className="mt-16">
           <h3 className="section-subtitle mb-8">Skills by Category</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-            {categories.map((category) => (
-              <div key={category} className="tech-card text-center animate-fade-in">
-                <h4 className="font-semibold mb-3 text-tech-blue">{category}</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skillsData.map((categoryData) => (
+              <div key={categoryData.category} className="tech-card text-center animate-fade-in">
+                <h4 className="font-semibold mb-4 text-tech-blue text-lg">{categoryData.category}</h4>
                 <div className="space-y-2">
-                  {skills
-                    .filter((skill) => skill.category === category)
-                    .map((skill) => (
-                      <p key={skill.name} className="text-sm">{skill.name}</p>
-                    ))}
+                  {categoryData.skills.map((skill) => (
+                    <span key={skill} className="inline-block bg-tech-blue/20 text-tech-blue-light px-3 py-1 rounded-full text-sm font-medium mr-2 mb-2">
+                      {skill}
+                    </span>
+                  ))}
                 </div>
               </div>
             ))}
