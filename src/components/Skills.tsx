@@ -30,15 +30,25 @@ const Skills: React.FC = () => {
       <div className="section-container">
         <h2 className="section-title">My Skills</h2>
         
-        <div className="mt-16">
-          <h3 className="section-subtitle mb-8">Skills by Category</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skillsData.map((categoryData) => (
-              <div key={categoryData.category} className="tech-card text-center animate-fade-in">
-                <h4 className="font-semibold mb-4 text-tech-blue text-lg">{categoryData.category}</h4>
-                <div className="space-y-2">
-                  {categoryData.skills.map((skill) => (
-                    <span key={skill} className="inline-block bg-tech-blue/20 text-tech-blue-light px-3 py-1 rounded-full text-sm font-medium mr-2 mb-2">
+        <div className="mt-16 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {skillsData.map((categoryData, index) => (
+              <div key={categoryData.category} className="tech-card text-left animate-fade-in group hover:shadow-2xl hover:shadow-tech-blue/10 transition-all duration-300">
+                <div className="flex items-center mb-6">
+                  <div className="w-3 h-3 bg-tech-blue rounded-full mr-3"></div>
+                  <h4 className="font-bold text-xl text-white group-hover:text-tech-blue-light transition-colors duration-300">
+                    {categoryData.category}
+                  </h4>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {categoryData.skills.map((skill, skillIndex) => (
+                    <span 
+                      key={skill} 
+                      className="inline-block bg-gradient-to-r from-tech-blue/10 to-tech-purple/10 border border-tech-blue/20 text-tech-blue-light px-4 py-2 rounded-full text-sm font-medium hover:bg-tech-blue/20 hover:scale-105 transition-all duration-300 cursor-default"
+                      style={{
+                        animationDelay: `${index * 100 + skillIndex * 50}ms`
+                      }}
+                    >
                       {skill}
                     </span>
                   ))}
